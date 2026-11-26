@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CCB DvP on Aztec</title>
+    <script>
+      // Proving uses every core only in a cross-origin-isolated page. Where the host does not send the headers for it,
+      // a service worker adds them; the page reloads once under it.
+      if (!window.crossOriginIsolated && window.isSecureContext && 'serviceWorker' in navigator) {
+        navigator.serviceWorker.register('coi-sw.js').then(function (registration) {
+          if (navigator.serviceWorker.controller || sessionStorage.getItem('coi-reloaded')) return;
+          var reload = function () {
+            sessionStorage.setItem('coi-reloaded', '1');
+            location.reload();
+          };
+          var worker = registration.active ? null : registration.installing || registration.waiting;
+          if (!worker) return reload();
+          worker.addEventListener('statechange', function () {
+            if (worker.state === 'activated') reload();
+          });
+        });
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/demo-DOhx7Zvu.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/client-Dk03ZQOG.js">
+    <link rel="modulepreload" crossorigin href="./assets/narration-2aV3wpRt.js">
+    <link rel="stylesheet" crossorigin href="./assets/client-BDe3JNSp.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
