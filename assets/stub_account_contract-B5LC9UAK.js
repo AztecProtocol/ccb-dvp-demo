@@ -1,1 +1,0 @@
-import{A as s}from"./client-Czk4e6H2.js";import{D as e}from"./account_contract-DheMp_pe.js";class u extends e{constructor(){super()}getInitializationFunctionAndArgs(){return Promise.resolve({constructorName:"constructor",constructorArgs:[]})}getAuthWitnessProvider(t){return new o}}class o{constructor(){}createAuthWit(t){return Promise.resolve(new s(t,[]))}}export{u as S};
